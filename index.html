@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi linda Rocí: 3 Semanas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. FONDO ANIMADO --- */
+        @keyframes subtleGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- 2. ANIMACIÓN DE ENTRADA --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Estilos Generales --- */
+        body {
+            /* Degradado de fondo con movimiento lento */
+            background: linear-gradient(-45deg, #fce4ec, #fff8e1, #ffe0b2, #f8bbd0);
+            background-size: 400% 400%;
+            animation: subtleGradient 15s ease infinite;
+
+            font-family: 'Playfair Display', serif; /* Fuente base más elegante */
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Contenedor Principal (Flexbox) */
+        .main-wrapper {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1400px;
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        /* --- Estilos de la CARTA (Centro) --- */
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px; /* Bordes más suaves */
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2); /* Sombra con toque rosa */
+            max-width: 600px;
+            width: 100%;
+            text-align: left;
+            border: 1px solid #ff708b; /* Borde delicado */
+            flex-shrink: 0; 
+            
+            /* Animación de entrada para la carta */
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Estilos de texto */
+        .header { text-align: center; margin-bottom: 25px; }
+        .header h1 { 
+            color: #e91e63; 
+            font-family: 'Great Vibes', cursive; /* Fuente manuscrita para título */
+            font-size: 2.8em; 
+            margin: 0; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .header p { font-style: italic; color: #888; font-size: 0.9em; } 
+        
+        .saludo { 
+            font-size: 1.5em; /* Saludo más grande */
+            margin-bottom: 20px; 
+            font-family: 'Great Vibes', cursive; /* Manuscrito para el saludo */
+            color: #d81b60; /* Rosa profundo */
+        }
+        
+        .cuerpo p { 
+            margin-bottom: 18px; 
+            text-indent: 0; 
+            text-align: justify;
+            font-size: 1.05em;
+        }
+        
+        .firma { margin-top: 40px; text-align: right; }
+        .firma p { 
+            font-family: 'Great Vibes', cursive; /* Manuscrito para la firma */
+            font-weight: bold; 
+            font-size: 1.8em; 
+            color: #e91e63; 
+        }
+
+        /* --- Estilos de las COLUMNAS DE FOTOS --- */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 220px;
+            flex-shrink: 0;
+        }
+
+        /* Estilo de cada IMAGEN */
+        .sidebar img {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 4px solid #fff; /* Marco más grueso */
+            object-fit: cover;
+            
+            /* Animación de entrada con un retraso */
+            animation: fadeIn 1.5s ease-out;
+            animation-delay: 0.5s; 
+            opacity: 0; /* Empieza invisible */
+            animation-fill-mode: forwards; /* Mantiene el estado final (visible) */
+            
+            /* Transición para el efecto glow */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        
+        /* Efecto de resplandor (Glow) al pasar el mouse */
+        .sidebar img:hover {
+             transform: scale(1.03);
+             /* Brillo rosa */
+             box-shadow: 0 0 15px #e91e63, 0 4px 10px rgba(0,0,0,0.2); 
+        }
+
+        /* --- ESTILOS PARA EL AUDIO Y EL BOTÓN DE REPRODUCCIÓN --- */
+        #music-toggle {
+            position: fixed; /* Fijo en la esquina */
+            bottom: 20px;
+            right: 20px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%; /* Botón redondo */
+            cursor: pointer;
+            font-size: 1.5em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 100; /* Asegura que esté encima de todo */
+            transition: background-color 0.3s ease;
+        }
+        #music-toggle:hover {
+            background-color: #d81b60;
+        }
+
+
+        /* --- MODO CELULAR (Responsive) --- */
+        @media (max-width: 1000px) {
+            .main-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .container {
+                width: 95%;
+                padding: 25px;
+                order: 2;
+            }
+
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .sidebar.left { order: 1; }
+            .sidebar.right { order: 3; }
+
+            .sidebar img {
+                width: calc(50% - 15px);
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <audio id="background-music" loop autoplay muted>
+        <source src="perfect.m4a" type="audio/mp4">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <button id="music-toggle" onclick="toggleMute()">🔇</button>
+
+    <div class="main-wrapper">
+        
+        <div class="sidebar left">
+            <img src="1.jpg" alt="Recuerdo 1">
+            <img src="2.jpg" alt="Recuerdo 2">
+            <img src="3.jpg" alt="Recuerdo 3">
+            <img src="4.jpg" alt="Recuerdo 4">
+            <img src="5.png" alt="Recuerdo 5">
+        </div>
+
+        <div class="container">
+            <div class="header">
+                <h1>Para mi linda Rocí</h1>
+                <p>Puerto Cabello, 15/12/25</p>
+            </div>
+
+            <div class="saludo">
+                Amorcito,
+            </div>
+
+            <div class="cuerpo">
+                <p>
+                    Me parece increíble que ya hayan pasado tres maravillosas semanas de habernos conocido, de haber empezado esta pequeña gran aventura juntos. Parece que fue hace poco, pero a la vez, siento que te conozco de casi toda la vida. Tres semanas pueden parecer poco, pero para mí, cada día ha sido como un capítulo nuevo en esta maravillosa historia que tenemos juntos, historia que para mí es como el tesoro más preciado que tengo.
+                </p>
+                <p>
+                    Desde el momento en el que charlamos por primera vez sentí muchas cosas, entre ellas incertidumbre y nervios por no saber qué podría suceder, no sabía qué tipo de persona eras, pero con el tiempo, mientras seguimos conversando me dí cuenta de algo, me dí cuenta de lo muy especial que eres y la increíble persona la cual me encontré. Algunas de las cosas que me han mantenido enganchado este tiempo han sido lo increíblemente graciosa y divertida que eres, la forma en la que te expresas y tu cariño, que aunque ciertamente no lo sueles demostrar tanto, cuándo lo haces se convierte en un momento muy especial el cuál no voy a olvidar.
+                </p>
+                <p>
+                    Hay algo sobre estos días que jamás olvidaré, cuando estuve contigo el día en el que todo fue para mal con Celeste y empezaste a darme mucho cariño, de verdad no sabes lo muy feliz que me hizo sentir ese momento. O la vez cuando me dijiste "Y yo te aviso desde ahora, vos sos mi esclavo. No de alguien más, ni de tus amigos ni nada" Probablemente sea raro mencionarlo ahora, pero lo que quiero decir es que tienes algo muy encantador cuando te vuelves un poco posesiva.
+                </p>
+                <p>
+                    Gracias por haberme dado la oportunidad de pasar este tiempo contigo, estando para ti y aprendiendo más sobre ti, sobre la increíble mujer que me tiene tan enamorado. Contigo me siento inimaginablemente feliz y me siento muy emocionado por todo lo que nos espera. Espero celebrar muchas más semanas, meses y años a tu lado amándote, apoyándote y siempre estando para ti cuando más me necesites.
+                </p>
+                <p>
+                    Te amo como no puedes imaginar.
+                </p>
+            </div>
+
+            <div class="firma">
+                <p>Con todo mi amor,</p>
+                <p>galletón.</p>
+            </div>
+        </div>
+
+        <div class="sidebar right">
+            <img src="6.png" alt="Recuerdo 6">
+            <img src="7.png" alt="Recuerdo 7">
+            <img src="8.png" alt="Recuerdo 8">
+            <img src="9.png" alt="Recuerdo 9">
+            <img src="10.png" alt="Recuerdo 10">
+        </div>
+
+    </div>
+
+    <script>
+        function toggleMute() {
+            const audio = document.getElementById('background-music');
+            const button = document.getElementById('music-toggle');
+            
+            if (audio.muted) {
+                audio.muted = false;
+                // Si el audio no estaba reproduciéndose, lo forzamos a reproducir
+                audio.play().catch(error => {
+                    console.log("La reproducción automática falló, el usuario debe interactuar con la página.");
+                }); 
+                button.innerHTML = '🔊'; // Cambia a ícono de sonido
+            } else {
+                audio.muted = true;
+                button.innerHTML = '🔇'; // Cambia a ícono de silencio
+            }
+        }
+    </script>
+</body>
+</html>
